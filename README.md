@@ -23,7 +23,7 @@ Fraudulent transactions cost card companies directly (the fraud amount itself) a
 2. **Preprocessing** - stratified 80/20 train/test split (preserves the 0.17% fraud rate in both sets), standard-scaled all features.
 3. **Baseline model** - Random Forest (100 trees, max depth 10), evaluated with 5-fold cross-validation (F1-scored, not accuracy, given the imbalance).
 4. **Testing ways to handle class imbalance** - Tested both SMOTE oversampling and setting class_weight='balanced' to see if they would improve performance over the original baseline model. Since neither approach provided a better result (see Key Findings), we stuck with the untouched baseline model.
-5. **Finding the right cutoff point** - We tested 6different cutoff sensitivity levels (from 0.1 to 0.9) to find the sweet spot between catching stolen money and avoiding false alarms, keeping in mind that letting a fraud slip by costs far more than having an analyst quickly double-check a suspicious charge..
+5. **Finding the right cutoff point** - We tested 9 different cutoff sensitivity levels (from 0.1 to 0.9) to find the sweet spot between catching stolen money and avoiding false alarms, keeping in mind that letting a fraud slip by costs far more than having an analyst quickly double-check a suspicious charge..
 
 ## Key Findings
 
@@ -70,8 +70,8 @@ Moving from 0.5 to 0.3 reduces estimated missed-fraud exposure by ~28% on this t
 
 ```
 fraud_detection_CC/
-├── fraud_detection_CC.ipynb   # Full analysis, modeling, and evaluation
-├── creditcard.csv             # Dataset 
+├── credit_card_fraud_detection.ipynb   # Full analysis, modeling, and evaluation
+├── creditcard.csv             # Dataset (download seperately)
 ├── requirements.txt
 └── README.md
 ```
@@ -80,6 +80,6 @@ fraud_detection_CC/
 
 1. Download `creditcard.csv` from the [Kaggle dataset page](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud) and place it in the project root (same folder as the notebook).
 2. Install dependencies: `pip install -r requirements.txt`
-3. Run: `jupyter notebook fraud_detection_CC.ipynb`
+3. Run: `credit_card_fraud_detection.ipynb`
 
 Full execution (including the SMOTE and class-weight comparison models) takes roughly 15–20 minutes (depends on the compute power).
